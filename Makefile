@@ -10,3 +10,7 @@ Engine: $(OBJS)
 $(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(@D)
 	gcc -c -o $@ $<
+
+clean:
+	-rm Engine
+	-rm -r $(OBJ)
