@@ -1,10 +1,12 @@
-SRCS=Engine.cpp Piece.cpp
-OBJS=$(subst .cpp,.o,$(SRCS))
+SRC=./src
+OBJ=./obj
 
-all: Engine
+SRCS=$(wildcard $(SRC)/*.cpp)
+OBJS=$(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 
 Engine: $(OBJS)
-	gcc -o Engine $(OBJS)
+	gcc -o $@ $^
 
-%.o: %.cpp
-	gcc -c $<
+$(OBJ)/%.o: $(SRC)/%.cpp
+	@mkdir -p $(@D)
+	gcc -c -o $@ $<
